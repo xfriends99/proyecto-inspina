@@ -25,4 +25,5 @@ class ProvinceRepository extends AbstractRepository
         return $query->orderBy('provinces.id', 'asc');
     }
 
+
 } 

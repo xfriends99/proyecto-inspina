@@ -14,15 +14,8 @@
                                 <h1>Nombre Cuenta</h1>
                             </section>
                             <section>
-                                <div class="btn-group">
-                                    <a data-toggle="dropdown" class="btn btn-white btn-sm dropdown-toggle"><i class="fa fa-edit"></i> Acciones <span class="caret"></span></a>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href=""><i class="fa fa-link"></i> Unificar con otra cuenta</a></li>
-                                        <li><a href=""><i class="fa fa-trash"></i> Eliminar cuenta</a></li>
-                                    </ul> 
-                                </div>
-                                <a class="btn btn-blue btn-sm" href="#"><i class="fa fa-save"></i> Guardar</a>
-                            </section>
+                            <button type="button" id="send-form" class="btn btn-blue btn-sm" ><i class="fa fa-save"></i> Guardar</button>
+                          </section>
                         </div>
                     </div>
                     <div class="row">
@@ -51,13 +44,14 @@
                                                 </div>
                                                 <div class="ibox-content">
                                                     <div class="row">
+                                                    <form id="main-form" action="{{route('account.store')}}" method="POST" enctype="multipart/form-data">
                                                         <div class="form-group">
                                                             <label>Nombre de fantasía</label>
-                                                            <input type="text" id="" value="" name="" data-placeholder="" placeholder=""/>
+                                                            <input type="text" id="fantasy_name" value="{{old('fantasy_name')}}" name="fantasy_name" data-placeholder="" placeholder=""/>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Razón social</label>
-                                                            <input type="text" id="" value="" name="" data-placeholder="" placeholder=""/>
+                                                            <input type="text" id="business_name" value="{{old('business_name')}}" name="business_name" data-placeholder="" placeholder=""/>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Tipo de cuenta</label>
@@ -68,12 +62,16 @@
                                                         <div class="form-group">
                                                             <label>Industria</label>
                                                             <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
+                                                             <ul>
+                                                            @foreach($industries as $industry)
+                                                  <option value="{{$industry->code}}">"{{$industry->name}}"</option>
+                                                    @endforeach
+                                                        </ul>
                                                             </select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>CUIT</label>
-                                                            <input type="number" id="" value="" name="" data-placeholder="" placeholder=""/>
+                                                            <input type="number" id="cuit" value="{{old('cuit')}}" name="cuit" data-placeholder="" placeholder=""/>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Ingresos brutos</label>
@@ -83,8 +81,10 @@
                                                         </div>
                                                         <div class="form-group-lg form-group">
                                                             <label>Descripción</label>
-                                                            <textarea type="text" id="" value="" name="" data-placeholder="" placeholder=""/></textarea>
+                                                            <textarea type="text" id="description" value="{{old('description')}}" name="description" data-placeholder="" placeholder=""></textarea>
                                                         </div>
+                                                        {{csrf_field()}}
+                                                      </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -308,4 +308,13 @@
             </div>
         </div>
 
+@endsection
+@section('inline-scripts')
+    <script>
+        $(document).ready(function(){
+            $('#send-form').click(function () {
+                $('#main-form').submit();
+            })
+        });
+    </script>
 @endsection

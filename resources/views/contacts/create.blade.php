@@ -13,20 +13,14 @@
                             <section>
                                 <h1>Nombre Apellido</h1>
                             </section>
-                            <section>
-                                <div class="btn-group">
-                                    <a data-toggle="dropdown" class="btn btn-white btn-sm dropdown-toggle"><i class="fa fa-edit"></i> Acciones <span class="caret"></span></a>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href=""><i class="fa fa-link"></i> Unificar con otro contacto</a></li>
-                                        <li><a href=""><i class="fa fa-trash"></i> Eliminar contacto</a></li>
-                                    </ul> 
-                                </div>
-                                <a class="btn btn-blue btn-sm" href="#"><i class="fa fa-save"></i> Guardar</a>
-                            </section>
+                           <section>
+                            <button type="button" id="send-form" class="btn btn-blue btn-sm" ><i class="fa fa-save"></i> Guardar</button>
+                          </section>
                         </div>
                     </div>
                     <div class="row">
                         <div class="tabs-container">
+
                             <div class="side-1">
                                 <form action="#" class="dropzone" id="dropzoneForm">
                                     <div class="fallback">
@@ -40,8 +34,10 @@
                                     <li class=""><a data-toggle="tab" href="#tab-4" aria-expanded="false">Configuración</a></li>
                                 </ul>
                             </div>
+
                             <div class="side-2">
                                 <div class="tab-content">
+
                                     <div id="tab-1" class="tab-pane active">
                                         <div class="panel-body">
                                             <div class="ibox">
@@ -53,45 +49,60 @@
                                                 </div>
                                                 <div class="ibox-content">
                                                     <div class="row">
+
+                                                     <form id="main-form" action="{{route('contact.store')}}" method="POST" enctype="multipart/form-data">
                                                         <div class="form-group">
                                                             <label>Primer nombre</label>
-                                                            <input type="text" id="" value="" name="" data-placeholder="" placeholder=""/>
+                                                            <input type="text" id="first_name" value="{{old('first_name')}}" name="first_name" data-placeholder="" placeholder=""/>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Segundo nombre</label>
-                                                            <input type="text" id="" value="" name="" data-placeholder="" placeholder=""/>
+                                                            <input type="text" id="second_name" value="{{old('second_name')}}" name="second_name" data-placeholder="" placeholder=""/>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Apellido</label>
-                                                            <input type="text" id="" value="" name="" data-placeholder="" placeholder=""/>
+                                                            <input type="text" id="last_name" value="{{old('last_name')}}" name="last_name" data-placeholder="" placeholder=""/>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Género</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
+                                                            <select name="genre" id="genre" data-placeholder="" placeholder="" class="form-control">
+                                                    <option value="Masculino">Masculino</option> 
+                                                    <option value="Femenino">Femenino</option> 
                                                             </select>
                                                         </div>
+
                                                         <div class="form-group">
                                                             <label>Fecha de nacimiento</label>
-                                                            <input type="date" id="" value="" name="" data-placeholder="" placeholder=""/>
+                                                            <input type="date" id="date_of_birth" value="{{old('date_of_birth')}}" name="date_of_birth" data-placeholder="" placeholder=""/>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>DNI</label>
-                                                            <input type="number" id="" value="" name="" data-placeholder="" placeholder=""/>
+                                                            <input type="number" id="dni" value="{{old('dni')}}" name="dni" data-placeholder="" placeholder=""/>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>CUIT</label>
-                                                            <input type="number" id="" value="" name="" data-placeholder="" placeholder=""/>
+                                                            <input type="number" id="cuit" value="{{old('cuit')}}" name="cuit" data-placeholder="" placeholder=""/>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Idioma</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
+                                                            <select name='language_id' data-placeholder="" placeholder="" class="form-control">
+                                                                       <ul>
+                                                    @foreach($languages as $language)
+                                                  <option value="{{$language->code}}">"{{$language->name}}"</option>
+                                                    @endforeach
+                                                        </ul>
                                                                 <option value=""></option>
                                                             </select>
+
                                                         </div>
+                                                          {{csrf_field()}}
+                                                      </form>
                                                     </div>
                                                 </div>
                                             </div>
+                                           </div>
+                                       </div>
+
                                             <div class="ibox">
                                                 <div class="ibox-heading">
                                                     <h4>Categorías</h4>
@@ -116,6 +127,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="ibox collapsed">
                                                 <div class="ibox-heading">
                                                     <h4>Intereses</h4>
@@ -141,8 +153,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                    
+                                    
                                     <div id="tab-2" class="tab-pane">
                                         <div class="panel-body">
                                             <div class="ibox">
@@ -195,6 +207,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div id="tab-3" class="tab-pane">
                                         <div class="panel-body">
                                             <div class="ibox collapsed">
@@ -306,30 +319,55 @@
                                                             <label>CP</label>
                                                             <input type="number" id="" value="" name="" data-placeholder="" placeholder=""/>
                                                         </div>
-                                                        <div class="form-group">
+                                                       
+                                                       <div class="form-group">
+
                                                             <label>País</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
+
+                                                            <select name='country' id="country_id" data-placeholder="" placeholder="" class="country" >
+                                                              <option value="">Seleccione un Pais</option>
+                                                            <ul>
+                                                    @foreach($countries as $country)
+                                                    <option value="{{$country->id}}">
+                                                        "{{$country->name}}"</option>
+                                                    @endforeach 
+                                                        </ul>
                                                             </select>
+
                                                         </div>
+
                                                         <div class="form-group">
+
                                                             <label>Provincia</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
+
+                                                            <select name='province' id="province_id" data-placeholder="" placeholder="" class="province">
+
+
                                                             </select>
+
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label>Localidad</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group">
+
+                                                           <div class="form-group">
+
                                                             <label>Ciudad</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
+
+                                                            <select name="city" id="city_id" data-placeholder="" placeholder="" class="city">
+
                                                             </select>
+
                                                         </div>
+
+                                                        <div class="form-group">
+
+                                                            <label>Localidad</label>
+
+                                                            <select name="locality" id="locality_id" data-placeholder="" placeholder="" class="locality">
+
+
+                                                            </select>
+
+                                                        </div>
+
                                                         <div class="form-group">
                                                             <label>Barrio</label>
                                                             <select data-placeholder="" placeholder="" class="form-control">
@@ -376,29 +414,55 @@
                                                             <label>CP</label>
                                                             <input type="number" id="" value="" name="" data-placeholder="" placeholder=""/>
                                                         </div>
+                                                      
                                                         <div class="form-group">
+
                                                             <label>País</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
+
+                                                            <select name="country_p" id="country_p" data-target="second"  data-placeholder="" placeholder="" class="country">
+
+                                                            <ul>
+                                                    @foreach($countries as $country)
+                                                    <option value="{{$country->id}}">
+                                                        "{{$country->name}}"</option>
+                                                    @endforeach 
+                                                        </ul>
                                                             </select>
+
                                                         </div>
+
                                                         <div class="form-group">
+
                                                             <label>Provincia</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
+
+                                                            <select name="province_p" id="province_p" data-placeholder="" placeholder="" class="province">
+
                                                             </select>
+
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label>Localidad</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group">
+
+                                                          <div class="form-group">
+
                                                             <label>Ciudad</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
+
+                                                            <select name="city_p" id="city_p" data-placeholder="" placeholder="" class="city">
+
                                                                 <option value=""></option>
+
                                                             </select>
+
+                                                        </div>
+
+                                                        <div class="form-group">
+
+                                                            <label>Localidad</label>
+
+                                                            <select name="locality_p" id="locality_p" data-placeholder="" placeholder="" class="locality">
+
+                                                                <option value=""></option>
+
+                                                            </select>
+
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Barrio</label>
@@ -446,29 +510,52 @@
                                                             <label>CP</label>
                                                             <input type="number" id="" value="" name="" data-placeholder="" placeholder=""/>
                                                         </div>
+                                                   
                                                         <div class="form-group">
+
                                                             <label>País</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
+                                                 
+                                                            <select name="country_e" id="country_e" data-placeholder="" placeholder="" class="country">
+
+                                                            <ul>
+                                                    @foreach($countries as $country)
+                                                    <option value="{{$country->id}}">
+                                                        "{{$country->name}}"</option>
+                                                    @endforeach 
+                                                        </ul>
                                                             </select>
+
                                                         </div>
+
                                                         <div class="form-group">
+
                                                             <label>Provincia</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
+
+                                                            <select name="province_e" id="province_e" data-placeholder="" placeholder="" class="province">
+
+
                                                             </select>
+
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label>Localidad</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group">
+
+                                                         <div class="form-group">
+
                                                             <label>Ciudad</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
+
+                                                            <select name="city_e" id="city_e" data-placeholder="" placeholder="" class="city">
+
                                                             </select>
+
+                                                        </div>
+
+                                                        <div class="form-group">
+
+                                                            <label>Localidad</label>
+
+                                                            <select name="locality_e" id="locality_e" data-placeholder="" placeholder="" class="locality">
+
+                                                            </select>
+
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Barrio</label>
@@ -682,19 +769,21 @@
                                                 </div> 
                                             </div>
                                         </div>
-                                    </div>                                               
+                                    </div>
                                 </div>
                             </div>
-                        </div>                            
+                        </div>
                     </div>
                 </main>
-            </div>
-       
-        </div>
-     
-
-
-
-
-
+                                             
+            
+@endsection
+@section('inline-scripts')
+    <script>
+        $(document).ready(function(){
+            $('#send-form').click(function () {
+                $('#main-form').submit();
+            })
+        });
+    </script>
 @endsection

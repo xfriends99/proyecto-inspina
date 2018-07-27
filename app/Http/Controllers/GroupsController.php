@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\GroupRepository;
+use App\Repositories\PrivacyRepository;
+use App\Services\FileProcessingService;
 use DB;
 use Exception;
 use Illuminate\Http\Request;
@@ -15,19 +17,45 @@ class GroupsController extends Controller
      */
     protected $groupRepository;
 
-    public function __construct(GroupRepository $groupRepository)
+    /**
+     * PrivacyRepository $privacyRepository
+     */
+    protected $privacyRepository;
+
+    /**
+     * FileProcessingService $fileProcessingService
+     */
+
+    protected $fileProcessingService;
+
+    /**
+     * GroupsController constructor.
+     * @param GroupRepository $groupRepository
+     * @param PrivacyRepository $privacyRepository
+     * @param FileProcessingService $fileProcessingService
+     */
+    public function __construct(GroupRepository $groupRepository,
+                                PrivacyRepository $privacyRepository,
+                                FileProcessingService $fileProcessingService)
     {
         $this->groupRepository = $groupRepository;
+        $this->privacyRepository = $privacyRepository;
+        $this->fileProcessingService = $fileProcessingService;
     }
+   
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('groups.index');
+        $params = $request->all();
+        $items = $this->groupRepository->search($params)->paginate(50);
+
+        return view('groups.index')
+            ->nest('table', 'groups.table', compact('items', 'params'));
     }
 
     /**
@@ -35,10 +63,12 @@ class GroupsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-          return view('groups.create');
-    }
+       public function create()
+     {
+        $privacies = $this->privacyRepository->all();
+        return view('groups.create', compact('privacies'));
+     
+     }
 
     /**
      * Store a newly created resource in storage.
@@ -48,12 +78,13 @@ class GroupsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['name' => 'required', 'description' => 'required']);
+        $this->validate($request, ['name' => 'required|min:3', 'description' => 'required']);
         try {
             DB::beginTransaction();
 
             $this->groupRepository->create($request->only('name', 'description'));
 
+          
             DB::commit();
 
             return redirect()->route('group.index')->with('alert_success', 'Grupo creado satisfactoriamente!');

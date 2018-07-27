@@ -16,15 +16,15 @@ class CreateProvincesTable extends Migration
         Schema::create('provinces', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('country_id');
-            $table->string('name',30);
-            $table->string('code',2);
+            $table->string('name',50);
+            $table->string('code',2)->nullable();
 
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             
         });
     }
   
-    //$table->foreign('countries_id')->references('provinces_id')->on('countries')->onDelete('cascade');
+
     /**
      * Reverse the migrations.
      *

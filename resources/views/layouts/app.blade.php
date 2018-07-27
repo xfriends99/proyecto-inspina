@@ -46,7 +46,6 @@
         <!-- OPORTUNIDADES VISTA PREVIA -->
 
         <!-- SCRIPTS BÁSICOS -->
-        <script src="{{asset('js/bootstrap.min.js')}}"></script>
         <script src="{{asset('js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
         <script src="{{asset('js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
         <!-- SCRIPTS BÁSICOS -->
@@ -60,6 +59,7 @@
 
         <!-- DATA TABLES -->
         <script src="{{asset('js/plugins/dataTables/datatables.min.js')}}"></script>
+        <script src="{{asset('js/users/create.js')}}"></script>
         <script>
             $(document).ready(function(){
                 $('.dataTables').DataTable({
@@ -105,44 +105,8 @@
         <script src="{{asset('js/plugins/chosen/chosen.jquery.js')}}"></script>
         <script>$('.chosen-select').chosen({width: "100%"});</script>
         <!-- CHOSEN SELECT -->
-
-        <!-- DUAL LIST BOX -->
-        <script src="{{asset('js/plugins/dualListbox/jquery.bootstrap-duallistbox.js')}}"></script>
-
-        <script>
-            $(document).ready(function(){
-                $('.dual_select').bootstrapDualListbox({
-                    selectorMinimalHeight: 160
-                });
-            });
-        </script>
-        <!-- DUAL LIST BOX -->
-
-        <!-- DROPZONE -->
-        <script src="{{asset('js/plugins/dropzone/dropzone.js')}}"></script>
-        <script>
-            Dropzone.options.dropzoneForm = {
-                paramName: "file", // The name that will be used to transfer the file
-                maxFilesize: 2, // MB
-                dictDefaultMessage: "<strong>Arrastre y suelte la imágen</strong></br><small>Máximo 2MB de tamaño</small>"
-            };
-
-            $(document).ready(function(){
-                var editor_one = CodeMirror.fromTextArea(document.getElementById("code1"), {
-                    lineNumbers: true,
-                    matchBrackets: true
-                });
-                var editor_two = CodeMirror.fromTextArea(document.getElementById("code2"), {
-                    lineNumbers: true,
-                    matchBrackets: true
-                });
-                var editor_two = CodeMirror.fromTextArea(document.getElementById("code3"), {
-                    lineNumbers: true,
-                    matchBrackets: true
-                });
-           });
-        </script>
         @yield('inline-scripts')
+
         <!-- DROPZONE -->
     </body>
 </html>

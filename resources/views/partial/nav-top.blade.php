@@ -109,7 +109,7 @@
                                     <li><a href="contactos-view.php">Ver mi perfil</a></li>
                                     <li><a href="contactos-edit.php">Editar mi perfil</a></li>
                                     <li><a href="config-view.php">Configuración</a></li>
-                                    <li><a href="logout.php">Salir</a></li>
+                                    <li><a href="{{route('logout')}}">Salir</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">

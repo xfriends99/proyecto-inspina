@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+ 
+ Route::get('/country/{id}/provinces','CountriesController@byCountry');
+ Route::get('/province/{id}/city','CountriesController@byProvince');
+ Route::get('/city/{id}/locality','CountriesController@byCity');
