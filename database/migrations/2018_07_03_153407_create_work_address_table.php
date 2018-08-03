@@ -13,10 +13,14 @@ class CreateWorkAddressTable extends Migration
      */
     public function up()
     {
-        Schema::create('work_addresses', function (Blueprint $table) {
+        Schema::create('work_address', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('account_id');
             $table->unsignedInteger('location_id');
+            $table->unsignedInteger('province_id');
+            $table->unsignedInteger('country_id');
+            $table->string('city',50);
+            $table->string('localitie',50);
             $table->text('address');
             $table->integer('number');
             $table->integer('floor')->nullable();
@@ -25,6 +29,8 @@ class CreateWorkAddressTable extends Migration
 
             $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
             $table->foreign('location_id')->references('id')->on('localities')->onDelete('cascade');
+            $table->foreign('province_id')->references('id')->on('provinces')->onDelete('cascade');
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
 
         });
     }
@@ -36,6 +42,12 @@ class CreateWorkAddressTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('work_address');
+        Schema::table('work_address', function (Blueprint $table) {
+            $table->dropForeign('work_address_account_id_foreign');
+            $table->dropForeign('work_address_location_id_foreign');
+            $table->dropForeign('work_address_province_id_foreign');
+            $table->dropForeign('work_address_country_id_foreign'); 
+          });
+         Schema::dropIfExists('work_address');
     }
 }

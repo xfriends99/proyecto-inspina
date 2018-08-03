@@ -32,6 +32,10 @@ class CreateContactPermissionTable extends Migration
      */
     public function down()
     {
+        Schema::table('contact_permission', function (Blueprint $table) {
+            $table->dropForeign('contact_permission_contact_id_foreign');
+            $table->dropForeign('contact_permission_permission_id_foreign');
+          });
         Schema::dropIfExists('contact_permission');
     }
 }

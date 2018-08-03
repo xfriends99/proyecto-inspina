@@ -33,6 +33,10 @@ class CreateContactInterestTable extends Migration
      */
     public function down()
     {
+        Schema::table('contact_interest', function (Blueprint $table) {
+            $table->dropForeign('contact_interest_contact_id_foreign');
+            $table->dropForeign('contact_interest_interest_id_foreign');
+          });
         Schema::dropIfExists('contact_interest');
     }
 }

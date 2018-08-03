@@ -9,9 +9,9 @@
                     <li><a href="{{route('account.index')}}"><i class="far fa-id-card"></i> <span class="nav-label">Cuentas</span></a></li>
                     <li><a href="{{route('group.index')}}"><i class="fas fa-users"></i> <span class="nav-label">Grupos</span></a></li>
                     <li><a href="{{route('opportunity.index')}}"><i class="fas fa-star"></i> <span class="nav-label">Oportunidades</span></a></li>
-                    <li><a href="calendar-view.php"><i class="fas fa-calendar"></i> <span class="nav-label">Calendario</span></a></li>
-                    <li><a href="publicaciones-mosaico.php"><i class="fas fa-newspaper"></i> <span class="nav-label">Publicaciones</span></span></a></li>
-                    <li><a href="propiedades-mosaico.php"><i class="fas fa-building"></i> <span class="nav-label">Propiedades</span></a></li>
+                    <li><a href="#"><i class="fas fa-calendar"></i> <span class="nav-label">Calendario</span></a></li>
+                    <li><a href="#"><i class="fas fa-newspaper"></i> <span class="nav-label">Publicaciones</span></span></a></li>
+                    <li><a href="#"><i class="fas fa-building"></i> <span class="nav-label">Propiedades</span></a></li>
                 </ul>
             </div>
         </nav>

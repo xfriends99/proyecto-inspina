@@ -32,6 +32,9 @@ class CreateCitiesTable extends Migration
      */
     public function down()
     {
+        Schema::table('cities', function (Blueprint $table) {
+             $table->dropForeign('cities_province_id_foreign');
+          });
         Schema::dropIfExists('cities');
     }
 }

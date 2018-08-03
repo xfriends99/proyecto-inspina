@@ -17,7 +17,7 @@ class CreateProvincesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('country_id');
             $table->string('name',50);
-            $table->string('code',2)->nullable();
+            $table->string('code',5)->nullable();
 
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             
@@ -32,6 +32,10 @@ class CreateProvincesTable extends Migration
      */
     public function down()
     {
+        Schema::table('provinces', function (Blueprint $table) {
+             $table->dropForeign('provinces_country_id_foreign');
+          });
         Schema::dropIfExists('provinces');
+
     }
 }

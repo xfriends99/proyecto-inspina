@@ -21,7 +21,7 @@ class CreateAccountsTable extends Migration
             $table->unsignedInteger('origin_source_id');
             $table->unsignedInteger('industry_id');
             $table->string('code',30);
-            $table->string('state',10);
+            $table->enum('state',['ACTIVO','INACTIVO'])->default('ACTIVO');
             $table->string('privacy',10);
             $table->string('account',10);
             $table->string('position',10);
@@ -38,8 +38,6 @@ class CreateAccountsTable extends Migration
             $table->integer('internal_number')->unsigned();
             $table->timestamps();
 
-            //$table->foreign('answer_to')->references('id')->on('accounts')->onDelete('set null');
-            //$table->foreign('replaced_by')->references('id')->on('accounts')->onDelete('set null');
             $table->foreign('answer_to')->references('id')->on('accounts')->onDelete('cascade');
             $table->foreign('replaced_by')->references('id')->on('accounts')->onDelete('cascade');
             $table->foreign('privacy_id')->references('id')->on('privacies')->onDelete('cascade');
@@ -55,6 +53,13 @@ class CreateAccountsTable extends Migration
      */
     public function down()
     {
+         Schema::table('accounts', function (Blueprint $table) {
+            $table->dropForeign('accounts_answer_to_foreign');
+            $table->dropForeign('accounts_replaced_by_foreign');
+            $table->dropForeign('accounts_privacy_id_foreign');
+            $table->dropForeign('accounts_origin_source_id_foreign');
+            $table->dropForeign('accounts_industry_id_foreign');
+          });
         Schema::dropIfExists('accounts');
     }
 }

@@ -33,6 +33,10 @@ class CreateDocumentOpportunityTable extends Migration
      */
     public function down()
     {
+        Schema::table('document_opportunity', function (Blueprint $table) {
+            $table->dropForeign('document_opportunity_opportunity_id_foreign');
+            $table->dropForeign('document_opportunity_document_id_foreign');
+          });
         Schema::dropIfExists('document_opportunity');
     }
 }

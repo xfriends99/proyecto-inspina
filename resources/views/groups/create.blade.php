@@ -44,11 +44,12 @@
                                     </div>
                                     <div class="ibox-content">
                                         <div class="row">
-                                            
+                                        
                                             <form id="main-form" action="{{route('group.store')}}" method="POST" enctype="multipart/form-data">
+                                               
                                                 <div class="form-group">
                                                     <label>Nombre del grupo</label>
-                                                    <input type="text" id="name" value="{{old('name')}}" name="name" data-placeholder="" placeholder=""/>
+                                                    <input type="text" name="name" id="name" value="{{old('name')}}"  data-placeholder="" placeholder=""/>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Visibilidad</label>
@@ -61,8 +62,9 @@
                                                 </div>
                                                 <div class="form-group form-group-lg">
                                                     <label>Descripción</label>
-                                                    <textarea type="text" id="description" value="{{old('description')}}" name="description" data-placeholder="Descripción" placeholder="Descripción" ></textarea>
+                                                    <textarea type="text" name="description" id="description" value="{{old('description')}}" data-placeholder="" placeholder="" ></textarea>
                                                 </div>
+
                                                 <input type="hidden" id="files-submit" name="files">
                                                 {{csrf_field()}}
                                             </form>

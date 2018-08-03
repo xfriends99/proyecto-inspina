@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Repositories\IndustryRepository;
+
 use App\Repositories\AccountRepository;
+use App\Repositories\IndustryRepository;
+use App\Repositories\CountryRepository;
 use DB;
 use Exception;
 use Illuminate\Http\Request;
@@ -13,14 +15,29 @@ class AccountsController extends Controller
      * AccountRepository $accountRepository
      */
     protected $accountRepository;
+ /**
+     * IndustryRepository $industryRepository
+     */
     protected $industryRepository; 
+ /**
+     * CountryRepository $countryRepository
+     */
+    protected $countryRepository; 
 
-    public function __construct(IndustryRepository $industryRepository,AccountRepository $accountRepository)
+    /**
+     * AccountsController constructor.
+     * @param AccountRepository $accountRepository
+     * @param IndustryRepository $industryRepository
+     * @param CountryRepository $countryRepository
+     */
+
+    public function __construct(AccountRepository $accountRepository, IndustryRepository $industryRepository, CountryRepository $countryRepository)
     {
         $this->accountRepository = $accountRepository;
 
         $this->industryRepository= $industryRepository;
 
+        $this->countryRepository = $countryRepository;
 
     }
 
@@ -43,7 +60,10 @@ class AccountsController extends Controller
     public function create()
     {
        $industries = $this->industryRepository->all();
-       return view('accounts.create', compact('industries'));
+
+       $countries= $this->countryRepository->all();
+
+       return view('accounts.create', compact('industries', 'countries'));
     }
 
 

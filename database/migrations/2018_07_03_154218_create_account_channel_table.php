@@ -36,6 +36,10 @@ class CreateAccountChannelTable extends Migration
      */
     public function down()
     {
+        Schema::table('account_channel', function (Blueprint $table) {
+            $table->dropForeign('account_channel_account_id_foreign');
+            $table->dropForeign('account_channel_channel_id_foreign');
+          });
         Schema::dropIfExists('account_channel');
     }
 }

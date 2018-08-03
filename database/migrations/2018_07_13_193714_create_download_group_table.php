@@ -32,6 +32,11 @@ class CreateDownloadGroupTable extends Migration
      */
     public function down()
     {
+      
+        Schema::table('download_group', function (Blueprint $table) {
+            $table->dropForeign('download_group_download_id_foreign');
+            $table->dropForeign('download_group_group_id_foreign');
+          });
         Schema::dropIfExists('download_group');
     }
 }

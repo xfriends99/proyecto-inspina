@@ -85,13 +85,12 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Idioma</label>
-                                                            <select name='language_id' data-placeholder="" placeholder="" class="form-control">
-                                                                       <ul>
-                                                    @foreach($languages as $language)
-                                                  <option value="{{$language->code}}">"{{$language->name}}"</option>
-                                                    @endforeach
-                                                        </ul>
-                                                                <option value=""></option>
+                                                            <select id= "language_id" name="language_id" data-placeholder="" placeholder="" class="form-control">
+                                                             <ul>
+                                                             @foreach($languages as $language)
+                                                             <option value="{{$language->code}}">"{{$language->name}}"</option>
+                                                             @endforeach
+                                                             </ul>
                                                             </select>
 
                                                         </div>
@@ -112,16 +111,23 @@
                                                 </div>
                                                 <div class="ibox-content">
                                                     <div class="row">
+
                                                         <div class="form-group">
                                                             <label>Tipo de contacto</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value="">Cuenta</option>
-                                                            </select>
+                                                    <select id="type_contact" name="type_contact" data-placeholder="" placeholder="" class="form-control">
+                                                        <option value="Cliente">Cliente</option> 
+                                                        <option value="Potencial">Potencial</option> 
+                                                        <option value="Competidor">Competidor</option>
+                                                        <option value="Partner">Partner</option> 
+                                                        <option value="Proveedor">Proveedor</option>
+                                                    </select>
                                                         </div>
+                                                        
                                                         <div class="form-group">
                                                             <label>Estado</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value="">Cuenta</option>
+                                                            <select name="state" id="state" data-placeholder="" placeholder="" class="form-control">
+                                                                <option value="Activo">Activo</option>
+                                                                <option value="Inactivo">Inactivo</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -141,20 +147,19 @@
                                                             <div class="bootstrap-duallistbox-container row moveonselect"> 
                                                                 <div class="box1 col-md-6"></div> 
                                                                 <div class="box2 col-md-6"></div>
-                                                                <select class="form-control dual_select" multiple="" style="display:none;">
-                                                                    <option value="A">A</option>
-                                                                    <option value="B">B</option>
-                                                                    <option value="C">C</option>
-                                                                    <option selected="" value="D">D</option>
-                                                                    <option selected="" value="F">F</option>
+                                                                <select id="interest" name="interest" class="form-control dual select" style="">
+                                                                   <ul>
+                                                             @foreach($interests as $interest)
+                                                             <option value="{{$interest->code}}">"{{$interest->name}}"</option>
+                                                             @endforeach
+                                                             </ul>
                                                                 </select>
                                                             </div>
                                                         </form>  
                                                     </div>
                                                 </div>
                                             </div>
-                                    
-                                    
+                                                    
                                     <div id="tab-2" class="tab-pane">
                                         <div class="panel-body">
                                             <div class="ibox">
@@ -323,58 +328,39 @@
                                                        <div class="form-group">
 
                                                             <label>País</label>
-
-                                                            <select name='country' id="country_id" data-placeholder="" placeholder="" class="country" >
-                                                              <option value="">Seleccione un Pais</option>
+                                                    <select name='country' id="country_id" data-placeholder="" placeholder="" class="country" >
+                                                        <option value="default">Seleccione Un Pais</option>
                                                             <ul>
                                                     @foreach($countries as $country)
                                                     <option value="{{$country->id}}">
                                                         "{{$country->name}}"</option>
                                                     @endforeach 
                                                         </ul>
-                                                            </select>
-
+                                                    </select>
                                                         </div>
 
                                                         <div class="form-group">
-
                                                             <label>Provincia</label>
-
                                                             <select name='province' id="province_id" data-placeholder="" placeholder="" class="province">
-
-
                                                             </select>
-
                                                         </div>
 
                                                            <div class="form-group">
-
                                                             <label>Ciudad</label>
-
-                                                            <select name="city" id="city_id" data-placeholder="" placeholder="" class="city">
-
-                                                            </select>
-
+                                                            <input type="number" id="city_id" value="" name="city_id" data-placeholder="" placeholder=""/>
                                                         </div>
 
                                                         <div class="form-group">
-
                                                             <label>Localidad</label>
-
-                                                            <select name="locality" id="locality_id" data-placeholder="" placeholder="" class="locality">
-
-
-                                                            </select>
-
+                                                         <input type="number" id="locality_id" value="" name="locality_id" data-placeholder="" placeholder=""/>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label>Barrio</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
-                                                            </select>
+                                                             <input type="number" id="" value="" name="" data-placeholder="" placeholder=""/>
                                                         </div>
                                                     </div>
+
                                                     <div class="hr-line-dashed"></div>
                                                     <div class="row">
                                                         <h5>
@@ -416,61 +402,41 @@
                                                         </div>
                                                       
                                                         <div class="form-group">
-
                                                             <label>País</label>
-
-                                                            <select name="country_p" id="country_p" data-target="second"  data-placeholder="" placeholder="" class="country">
-
+                                                    <select name="country_p" id="country_p" data-target="second"  data-placeholder="" placeholder="" class="country">
                                                             <ul>
-                                                    @foreach($countries as $country)
-                                                    <option value="{{$country->id}}">
+                                                      @foreach($countries as $country)
+                                                      <option value="{{$country->id}}">
                                                         "{{$country->name}}"</option>
-                                                    @endforeach 
+                                                      @endforeach 
                                                         </ul>
-                                                            </select>
+                                                    </select>
 
                                                         </div>
 
                                                         <div class="form-group">
-
                                                             <label>Provincia</label>
-
-                                                            <select name="province_p" id="province_p" data-placeholder="" placeholder="" class="province">
-
-                                                            </select>
-
+                                                        <select name="province_p" id="province_p" data-placeholder="" placeholder="" class="province">
+                                                        </select>
                                                         </div>
 
-                                                          <div class="form-group">
-
+                                                           <div class="form-group">
                                                             <label>Ciudad</label>
-
-                                                            <select name="city_p" id="city_p" data-placeholder="" placeholder="" class="city">
-
-                                                                <option value=""></option>
-
-                                                            </select>
-
+                                                            <input type="number" id="city_id" value="" name="city_id" data-placeholder="" placeholder=""/>
                                                         </div>
 
                                                         <div class="form-group">
-
                                                             <label>Localidad</label>
-
-                                                            <select name="locality_p" id="locality_p" data-placeholder="" placeholder="" class="locality">
-
-                                                                <option value=""></option>
-
-                                                            </select>
-
+                                                         <input type="number" id="locality_id" value="" name="locality_id" data-placeholder="" placeholder=""/>
                                                         </div>
+
                                                         <div class="form-group">
                                                             <label>Barrio</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
-                                                            </select>
+                                                             <input type="number" id="" value="" name="" data-placeholder="" placeholder=""/>
                                                         </div>
+
                                                     </div>
+
                                                     <div class="hr-line-dashed"></div>
                                                     <div class="row">
                                                         <h5>
@@ -512,57 +478,38 @@
                                                         </div>
                                                    
                                                         <div class="form-group">
-
                                                             <label>País</label>
-                                                 
-                                                            <select name="country_e" id="country_e" data-placeholder="" placeholder="" class="country">
-
+                                                        <select name="country_e" id="country_e" data-placeholder="" placeholder="" class="country">
                                                             <ul>
-                                                    @foreach($countries as $country)
-                                                    <option value="{{$country->id}}">
+                                                           @foreach($countries as $country)
+                                                           <option value="{{$country->id}}">
                                                         "{{$country->name}}"</option>
-                                                    @endforeach 
+                                                           @endforeach 
                                                         </ul>
-                                                            </select>
-
+                                                        </select>
                                                         </div>
 
                                                         <div class="form-group">
-
                                                             <label>Provincia</label>
-
                                                             <select name="province_e" id="province_e" data-placeholder="" placeholder="" class="province">
-
-
                                                             </select>
-
                                                         </div>
 
                                                          <div class="form-group">
-
                                                             <label>Ciudad</label>
-
-                                                            <select name="city_e" id="city_e" data-placeholder="" placeholder="" class="city">
-
-                                                            </select>
-
+                                                            <input type="number" id="city_id" value="" name="city_id" data-placeholder="" placeholder=""/>
                                                         </div>
 
                                                         <div class="form-group">
-
                                                             <label>Localidad</label>
-
-                                                            <select name="locality_e" id="locality_e" data-placeholder="" placeholder="" class="locality">
-
-                                                            </select>
-
+                                                         <input type="number" id="locality_id" value="" name="locality_id" data-placeholder="" placeholder=""/>
                                                         </div>
+
                                                         <div class="form-group">
                                                             <label>Barrio</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
-                                                            </select>
+                                                             <input type="number" id="" value="" name="" data-placeholder="" placeholder=""/>
                                                         </div>
+
                                                     </div>
                                                 </div>
                                             </div>  
@@ -619,12 +566,12 @@
                                                             <div class="bootstrap-duallistbox-container row moveonselect"> 
                                                                 <div class="box1 col-md-6"></div> 
                                                                 <div class="box2 col-md-6"></div>
-                                                                <select class="form-control dual_select" multiple="" style="display:none;">
-                                                                    <option value="A">A</option>
-                                                                    <option value="B">B</option>
-                                                                    <option value="C">C</option>
-                                                                    <option selected="" value="D">D</option>
-                                                                    <option selected="" value="F">F</option>
+                                                             <select id="contact_preference_id" name="contact_preference_id" class="form-control dual select" style="">
+                                                                   <ul>
+                                                             @foreach($contactpreferences as $contactpreference)
+                                                             <option value="{{$contactpreference->code}}">"{{$contactpreference->name}}"</option>
+                                                             @endforeach
+                                                             </ul>
                                                                 </select>
                                                             </div>
                                                         </form>  

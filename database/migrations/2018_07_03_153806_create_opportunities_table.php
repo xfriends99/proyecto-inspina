@@ -18,7 +18,7 @@ class CreateOpportunitiesTable extends Migration
             $table->unsignedInteger('privacy_id');
             $table->string('name',50);
             $table->string('code',20);
-            $table->string('state',20);
+            $table->enum('state',['ACTIVO','INACTIVO'])->default('ACTIVO');
             $table->text('description');
             $table->decimal('price',20,2);
             $table->timestamps();
@@ -36,6 +36,9 @@ class CreateOpportunitiesTable extends Migration
      */
     public function down()
     {
+        Schema::table('opportunities', function (Blueprint $table) {
+            $table->dropForeign('opportunities_privacy_id_foreign');
+          });
         Schema::dropIfExists('opportunities');
     }
 }

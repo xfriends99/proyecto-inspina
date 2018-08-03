@@ -16,10 +16,10 @@ class CreateLocalitiesTable extends Migration
         Schema::create('localities', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('city_id');
-            $table->string('name',50);
-            $table->string('name_alt',50)->nullable();
-            $table->string('code',2)->nullable();
-            $table->string('abb_code',2)->nullable();
+            $table->string('name',100);
+            $table->string('name_alt',100)->nullable();
+            $table->string('code',10)->nullable();
+            $table->string('abb_code',5)->nullable();
 
 
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
@@ -34,6 +34,9 @@ class CreateLocalitiesTable extends Migration
      */
     public function down()
     {
+        Schema::table('localities', function (Blueprint $table) {
+             $table->dropForeign('localities_city_id_foreign');
+          });
         Schema::dropIfExists('localities');
     }
 }

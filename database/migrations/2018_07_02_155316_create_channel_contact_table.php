@@ -34,6 +34,10 @@ class CreateChannelContactTable extends Migration
      */
     public function down()
     {
+        Schema::table('channel_contact', function (Blueprint $table) {
+            $table->dropForeign('channel_contact_contact_id_foreign');
+            $table->dropForeign('channel_contact_channel_id_foreign');
+            });
         Schema::dropIfExists('channel_contact');
     }
 }

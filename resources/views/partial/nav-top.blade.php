@@ -8,20 +8,20 @@
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-2 col-xs-2">
                         <ul class="nav navbar-top-links">
-                            <li><a href="dashboard.php">Dashboard</a></li>
+                            <li><a href="">Dashboard</a></li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Crear</a>
                                 <ul class="dropdown-menu-top dropdown-menu-right">
-                                    <li><a href=""><i class="fa fa-user"></i>Nuevo contacto</a></li>
-                                    <li><a href=""><i class="fas fa-id-card"></i>Nueva cuenta</a></li>
-                                    <li><a href=""><i class="fa fa-users"></i>Nuevo grupo</a></li>
-                                    <li><a href=""><i class="fa fa-star"></i>Oportunidad</a></li>
-                                    <li><a href=""><i class="fa fa-calendar"></i>Tarea</a></li>
-                                    <li><a href=""><i class="fa fa-newspaper"></i>Publicación</a></li>
-                                    <li><a href=""><i class="fa fa-building"></i>Propiedad</a></li>
+                                    <li><a href="#"><i class="fa fa-user"></i>Nuevo contacto</a></li>
+                                    <li><a href="#"><i class="fas fa-id-card"></i>Nueva cuenta</a></li>
+                                    <li><a href="#"><i class="fa fa-users"></i>Nuevo grupo</a></li>
+                                    <li><a href="#"><i class="fa fa-star"></i>Oportunidad</a></li>
+                                    <li><a href="#"><i class="fa fa-calendar"></i>Tarea</a></li>
+                                    <li><a href="#"><i class="fa fa-newspaper"></i>Publicación</a></li>
+                                    <li><a href="#"><i class="fa fa-building"></i>Propiedad</a></li>
                                 </ul>
                             </li>
-                            <li><a href="calendar-view.php">Calendario</a></li>
+                            <li><a href="#">Calendario</a></li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mensajes
                                     <span class="label bg-orange"></span>
@@ -31,7 +31,7 @@
                                         <small class="">Sin leer (1000)</small>
                                         <a href="">Nuevo mensaje</a>
                                     </li>
-                                    <li class="unread">
+                                    <!--<li class="unread">
                                         <a href="#">
                                             <div class="dropdown-menu-mensajes-box">
                                                 <div class="media-left">
@@ -56,9 +56,9 @@
                                                 </div>
                                             </div>
                                         </a>
-                                    </li>
+                                    </li>-->
                                     <li>
-                                        <a href="mensajes-view.php">Ver todos los mensajes</a>
+                                        <a href="#">Ver todos los mensajes</a>
                                     </li>
                                 </ul>
                             </li>
@@ -106,9 +106,9 @@
                                     <img alt="" class="img-circle" src="{{asset('img/a1.jpg')}}">
                                 </a>
                                 <ul class="dropdown-menu-top dropdown-menu-right">
-                                    <li><a href="contactos-view.php">Ver mi perfil</a></li>
-                                    <li><a href="contactos-edit.php">Editar mi perfil</a></li>
-                                    <li><a href="config-view.php">Configuración</a></li>
+                                    <li><a href="{{route('user.show', \Auth::user()->id)}}">Ver mi perfil</a></li>
+                                    <li><a href="{{route('user.edit', \Auth::user()->id)}}">Editar mi perfil</a></li>
+                                    <li><a href="#">Configuración</a></li>
                                     <li><a href="{{route('logout')}}">Salir</a></li>
                                 </ul>
                             </li>
@@ -119,9 +119,9 @@
                                 <ul class="dropdown-menu-mensajes dropdown-menu-right">
                                     <li>
                                         <small class="">Sin leer (1000)</small>
-                                        <a href="">Nuevo mensaje</a>
+                                        <a href="#">Nuevo mensaje</a>
                                     </li>
-                                    <li class="unread">
+                                    <!--<li class="unread">
                                         <a href="#">
                                             <div class="dropdown-menu-mensajes-box">
                                                 <div class="media-left">
@@ -146,9 +146,9 @@
                                                 </div>
                                             </div>
                                         </a>
-                                    </li>
+                                    </li>-->
                                     <li>
-                                        <a href="mensajes-view.php">Ver todos los mensajes</a>
+                                        <a href="#">Ver todos los mensajes</a>
                                     </li>
                                 </ul>
                             </li>

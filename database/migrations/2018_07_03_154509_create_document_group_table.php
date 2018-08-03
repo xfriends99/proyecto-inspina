@@ -34,6 +34,10 @@ class CreateDocumentGroupTable extends Migration
      */
     public function down()
     {
+        Schema::table('document_group', function (Blueprint $table) {
+            $table->dropForeign('document_group_group_id_foreign');
+            $table->dropForeign('document_group_document_id_foreign');
+          });
         Schema::dropIfExists('document_group');
     }
 }

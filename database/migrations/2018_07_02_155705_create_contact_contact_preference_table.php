@@ -31,6 +31,10 @@ class CreateContactContactPreferenceTable extends Migration
      */
     public function down()
     {
+        Schema::table('contact_contact_preference', function (Blueprint $table) {
+         $table->dropForeign('contact_contact_preference_contact_id_foreign');
+         $table->dropForeign('contact_contact_preference_contact_preference_id_foreign');
+          });
         Schema::dropIfExists('contact_contact_preference');
     }
 }

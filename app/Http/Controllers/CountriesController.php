@@ -13,12 +13,23 @@ class CountriesController extends Controller
 
 
 /**
-     * province $province
+     * Province $province
      */
     protected $province; 
+/**
+     * City $city
+     */
     protected $city; 
+/**
+     * Locality $locality
+     */
     protected $locality; 
-
+ /**
+     * CountriesController constructor.
+     * @param Province $province
+     * @param City $city
+     * @param  Locality $locality
+     */
 
     public function __construct(Province $province,City $city, Locality $locality)
     {

@@ -13,11 +13,6 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\ImportLanguagesCodes::class,
-        Commands\ImportCountriesCodes::class,
-        Commands\ImportCitiesCodes::class,
-        Commands\ImportLocalitiesCodes::class,
-        Commands\ImportProvincesCodes::class,
     ];
 
     /**

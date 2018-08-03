@@ -16,7 +16,7 @@ class CreateEcommercesTable extends Migration
         Schema::create('ecommerces', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name',50);
-            $table->string('state',20);
+            $table->enum('state',['ACTIVO','INACTIVO'])->default('ACTIVO');
             $table->decimal('price',20,2);
             $table->timestamps();
         });

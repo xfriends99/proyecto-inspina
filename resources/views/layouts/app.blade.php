@@ -65,6 +65,7 @@
                 $('.dataTables').DataTable({
                     pageLength: 5,
                     responsive: true,
+                    bPaginate: false,
                     dom: '<"html5buttons"B>lTfgitp',
                     buttons: [
                         { extend: 'copy'},

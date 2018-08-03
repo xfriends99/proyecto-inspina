@@ -16,10 +16,10 @@ class CreateContactsTable extends Migration
       Schema::create('contacts', function (Blueprint $table) {
           $table->increments('id');
           $table->unsignedInteger('user_id');
-          $table->string('code',30);
-          $table->string('state',10);
           $table->unsignedInteger('language_id');
           $table->unsignedInteger('origin_source_id');
+          $table->string('code',30);
+          $table->enum('state',['ACTIVO','INACTIVO'])->default('ACTIVO');
           $table->string('type_contact',20);
           $table->string('first_name',50);
           $table->string('second_name',50);
@@ -51,6 +51,11 @@ class CreateContactsTable extends Migration
      */
     public function down()
     {
+        Schema::table('contacts', function (Blueprint $table) {
+            $table->dropForeign('contacts_user_id_foreign');
+            $table->dropForeign('contacts_language_id_foreign');
+            $table->dropForeign('contacts_origin_source_id_foreign');
+          });
         Schema::dropIfExists('contacts');
     }
 }

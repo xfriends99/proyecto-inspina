@@ -19,7 +19,7 @@ class CreateGroupsTable extends Migration
             $table->unsignedInteger('privacy_id');
             $table->string('name',100);
             $table->string('code',20);
-            $table->string('state',20);
+            $table->enum('state',['ACTIVO','INACTIVO'])->default('ACTIVO');
             $table->text('description');
             $table->timestamps();
 
@@ -36,6 +36,10 @@ class CreateGroupsTable extends Migration
      */
     public function down()
     {
+        Schema::table('groups', function (Blueprint $table) {
+            $table->dropForeign('groups_privacy_id_foreign');
+            $table->dropForeign('groups_created_by_foreign');
+          });
         Schema::dropIfExists('groups');
     }
 }

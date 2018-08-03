@@ -35,6 +35,10 @@ class CreateRecordsTable extends Migration
      */
     public function down()
     {
+        Schema::table('records', function (Blueprint $table) {
+            $table->dropForeign('records_created_by_foreign');
+            $table->dropForeign('records_modified_by_foreign');
+          });
         Schema::dropIfExists('records');
     }
 }

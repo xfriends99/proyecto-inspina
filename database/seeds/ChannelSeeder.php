@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Repositories\ChannelRepository;
+
 class ChannelSeeder extends Seeder
 {
     /**

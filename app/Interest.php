@@ -9,4 +9,5 @@ class Interest extends Model
    protected $fillable = [
         'name','code',
     ];
+    public $timestamps = false;
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\GroupRepository;
 use App\Repositories\PrivacyRepository;
 use App\Services\FileProcessingService;
+use App\Repositories\UserRepository;
 use DB;
 use Exception;
 use Illuminate\Http\Request;
@@ -42,20 +43,27 @@ class GroupsController extends Controller
         $this->privacyRepository = $privacyRepository;
         $this->fileProcessingService = $fileProcessingService;
     }
-   
+
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Request $request)
     {
         $params = $request->all();
-        $items = $this->groupRepository->search($params)->paginate(50);
+        if(!isset($params['count'])) $params['count'] = 25;
+        if(!isset($params['type'])) $params['type'] = 'table';
 
-        return view('groups.index')
-            ->nest('table', 'groups.table', compact('items', 'params'));
+        $groups = $this->groupRepository->search($params)->paginate($params['count']);
+
+        if($params['type'] == 'table'){
+            return view('groups.index', compact('groups', 'params'));
+        } else {
+            return view('groups.index', compact('groups', 'params'));
+        }
     }
 
     /**
@@ -70,6 +78,16 @@ class GroupsController extends Controller
      
      }
 
+     public function generateSerieCode()
+     {
+       $lastGroup = $this->groupRepository->search()->get()->last();
+       $number = $lastGroup ? $lastGroup->code:0;
+       $number = ++$number;
+       $number = str_repeat('0', 8-strlen($number)).$number;
+       return $number;
+     }
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -78,13 +96,23 @@ class GroupsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['name' => 'required|min:3', 'description' => 'required']);
+        $this->validate($request, [
+                'name' => 'required|min:3',
+                'description' => 'required',
+                'privacy_id' => 'required'
+                ]);
+ 
         try {
+
             DB::beginTransaction();
+            $code = $this->generateSerieCode();
+            $params = array_merge($request->only('name', 'description','privacy_id'), ['created_by' => \Auth::user()->id, 'code' => $code]);
+            $group = $this->groupRepository->create($params);
 
-            $this->groupRepository->create($request->only('name', 'description'));
+            /*if($request->has('files')){
+                $this->fileProcessingService->uploadFinally(collect(explode(',', $request->files)), $group, $this->groupRepository);
+            }*/
 
-          
             DB::commit();
 
             return redirect()->route('group.index')->with('alert_success', 'Grupo creado satisfactoriamente!');
@@ -94,6 +122,7 @@ class GroupsController extends Controller
             return redirect()->back()->withInput()->withErrors($e->getMessage());
         }
     }
+
 
     /**
      * Display the specified resource.

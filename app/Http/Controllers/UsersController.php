@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Repositories\UserRepository;
 use App\Repositories\LanguageRepository;
 use App\Repositories\CountryRepository;
+use App\Repositories\InterestRepository;
+use App\Repositories\ContactPreferenceRepository;
 use DB;
 use Exception;
 use Illuminate\Http\Request;
@@ -14,16 +17,40 @@ class UsersController extends Controller
      * UserRepository $userRepository
      */
     protected $userRepository; 
+     /**
+     * LanguageRepository $languageRepository
+     */
     protected $languageRepository; 
+     /**
+     * CountryRepository $countryRepository
+     */
     protected $countryRepository; 
+    /**
+     * InterestRepository $interestRepository
+     */
+    protected $interestRepository; 
+    /**
+     * ContactPreferenceRepository $contactpreferenceRepository
+     */
+    protected $contactpreferenceRepository;
 
 
-    public function __construct(UserRepository $userRepository, LanguageRepository $languageRepository, CountryRepository $countryRepository)
+/**
+     * UsersController constructor.
+     * @param UserRepository $userRepository
+     * @param LanguageRepository $languageRepository
+     * @param CountryRepository $countryRepository
+     * @param InterestRepository $interestRepository
+     * @param ContactPreferenceRepository $contactpreferenceRepository
+     */
+
+    public function __construct(UserRepository $userRepository, LanguageRepository $languageRepository, CountryRepository $countryRepository, InterestRepository $interestRepository, ContactPreferenceRepository $contactpreferenceRepository)
     {
         $this->userRepository = $userRepository;
         $this->languageRepository = $languageRepository;
         $this->countryRepository = $countryRepository;
-
+        $this->interestRepository= $interestRepository;
+        $this->contactpreferenceRepository= $contactpreferenceRepository;
     }
 
 
@@ -47,9 +74,10 @@ class UsersController extends Controller
     {
         $languages = $this->languageRepository->all();
         $countries= $this->countryRepository->all();
+        $interests= $this->interestRepository->all();
+        $contactpreferences= $this->contactpreferenceRepository->all();
 
-
-        return view('users.create', compact('languages','countries'));
+        return view('users.create', compact('languages','countries','interests','contactpreferences'));
     }
 
     /**

@@ -31,6 +31,11 @@ class CreateContactDownloadTable extends Migration
      */
     public function down()
     {
+        
+        Schema::table('contact_download', function (Blueprint $table) {
+            $table->dropForeign('contact_download_contact_id_foreign');
+            $table->dropForeign('contact_download_download_id_foreign');
+          });
         Schema::dropIfExists('contact_download');
     }
 }

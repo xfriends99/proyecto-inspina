@@ -32,6 +32,9 @@ class CreateDownloadsTable extends Migration
      */
     public function down()
     {
+        Schema::table('downloads', function (Blueprint $table) {
+            $table->dropForeign('downloads_user_id_foreign');
+          });
         Schema::dropIfExists('downloads');
     }
 }

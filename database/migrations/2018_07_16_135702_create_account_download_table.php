@@ -31,6 +31,11 @@ class CreateAccountDownloadTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('account_download');
+        Schema::table('account_download', function (Blueprint $table) {
+            $table->dropForeign('account_download_account_id_foreign');
+            $table->dropForeign('account_download_download_id_foreign');
+          });
+         Schema::dropIfExists('account_download');
     }
 }
+

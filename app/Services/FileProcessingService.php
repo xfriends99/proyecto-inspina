@@ -22,9 +22,9 @@ class FileProcessingService
 
     }
 
-    public function uploadFinally(Collection $files)
+    public function uploadFinally(Collection $files, $model, $repository)
     {
-
+        dd($files);
     }
 
     private function uploadFile($file, $destinationPath)

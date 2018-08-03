@@ -22,7 +22,16 @@ class CountryRepository extends AbstractRepository
             ->distinct()
             ->select('countries.*');
 
+        if(isset($filters['name'])){
+            $query->where('name', $filters['name']);
+        }
+
         return $query->orderBy('countries.id', 'asc');
+    }
+
+    public function getByName($name)
+    {
+        return $this->search(['name' => $name])->get()->first();
     }
 
 } 

@@ -55,18 +55,23 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Tipo de cuenta</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
-                                                            </select>
+                                                    <select id="type" name="type" data-placeholder="" placeholder="" class="form-control">
+                                                        <option value="Cliente">Cliente</option> 
+                                                        <option value="Potencial">Potencial</option> 
+                                                        <option value="Competidor">Competidor</option>
+                                                        <option value="Partner">Partner</option> 
+                                                        <option value="Proveedor">Proveedor</option>
+                                                    </select>
                                                         </div>
+
                                                         <div class="form-group">
                                                             <label>Industria</label>
                                                             <select data-placeholder="" placeholder="" class="form-control">
                                                              <ul>
                                                             @foreach($industries as $industry)
-                                                  <option value="{{$industry->code}}">"{{$industry->name}}"</option>
-                                                    @endforeach
-                                                        </ul>
+                                                             <option value="{{$industry->code}}">"{{$industry->name}}"</option>
+                                                            @endforeach
+                                                             </ul>
                                                             </select>
                                                         </div>
                                                         <div class="form-group">
@@ -195,36 +200,41 @@
                                                             <label>CP</label>
                                                             <input type="number" id="" value="" name="" data-placeholder="" placeholder=""/>
                                                         </div>
+
                                                         <div class="form-group">
                                                             <label>País</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
-                                                            </select>
+                                                        <select name='country' id="country_id" data-target="first" data-placeholder="" placeholder="" class="country" >
+                                                              <option value="default">Seleccione un Pais</option>
+                                                            <ul>
+                                                             @foreach($countries as $country)
+                                                             <option value="{{$country->id}}">
+                                                             "{{$country->name}}"</option>
+                                                             @endforeach 
+                                                           </ul>
+                                                         </select>
+
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Provincia</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
+                                                            <select name='province' id="province_id" data-target="first" data-placeholder="" placeholder="" class="province">
                                                             </select>
                                                         </div>
+
+                                                           <div class="form-group">
+                                                            <label>Ciudad</label>
+                                                            <input type="number" id="city_id" value="" name="city_id" data-placeholder="" placeholder=""/>
+                                                        </div>
+
                                                         <div class="form-group">
                                                             <label>Localidad</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
-                                                            </select>
+                                                         <input type="number" id="locality_id" value="" name="locality_id" data-placeholder="" placeholder=""/>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label>Ciudad</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
-                                                            </select>
-                                                        </div>
+
                                                         <div class="form-group">
                                                             <label>Barrio</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
-                                                            </select>
+                                                             <input type="number" id="" value="" name="" data-placeholder="" placeholder=""/>
                                                         </div>
+
                                                     </div>
                                                     <div class="hr-line-dashed"></div>
                                                     <div class="row">
@@ -265,37 +275,41 @@
                                                             <label>CP</label>
                                                             <input type="number" id="" value="" name="" data-placeholder="" placeholder=""/>
                                                         </div>
+
                                                         <div class="form-group">
                                                             <label>País</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
+                                                            <select name="country_p" id="country_p" data-target="second"  data-placeholder="" placeholder="" class="country">
+                                                                <ul>
+                                                                @foreach($countries as $country)
+                                                                <option value="{{$country->id}}">
+                                                                "{{$country->name}}"</option>
+                                                                @endforeach 
+                                                                </ul>
                                                             </select>
                                                         </div>
+
                                                         <div class="form-group">
                                                             <label>Provincia</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
+                                                            <select name="province_p" id="province_p" data-target="second" data-placeholder="" placeholder="" class="province">
                                                             </select>
                                                         </div>
+
+                                                         <div class="form-group">
+                                                            <label>Ciudad</label>
+                                                            <input type="number" id="city_id" value="" name="city_id" data-placeholder="" placeholder=""/>
+                                                        </div>
+
                                                         <div class="form-group">
                                                             <label>Localidad</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
-                                                            </select>
+                                                         <input type="number" id="locality_id" value="" name="locality_id" data-placeholder="" placeholder=""/>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label>Ciudad</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
-                                                            </select>
-                                                        </div>
+
                                                         <div class="form-group">
                                                             <label>Barrio</label>
-                                                            <select data-placeholder="" placeholder="" class="form-control">
-                                                                <option value=""></option>
-                                                            </select>
+                                                             <input type="number" id="" value="" name="" data-placeholder="" placeholder=""/>
                                                         </div>
                                                     </div>
+                                                    
                                                 </div>
                                             </div>  
                                         </div>

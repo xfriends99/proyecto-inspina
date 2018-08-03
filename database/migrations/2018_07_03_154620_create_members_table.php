@@ -16,10 +16,9 @@ class CreateMembersTable extends Migration
         Schema::create('members', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('group_id');
-            $table->unsignedInteger('contact_id');
+            $table->morphs('member');
             $table->timestamps();
 
-            $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
             $table->foreign('contact_id')->references('id')->on('contacts')->onDelete('cascade');
         });
     }
@@ -33,6 +32,10 @@ class CreateMembersTable extends Migration
      */
     public function down()
     {
+        Schema::table('members', function (Blueprint $table) {
+            $table->dropForeign('members_group_id_foreign');
+            $table->dropForeign('members_contact_id_foreign');
+          });
         Schema::dropIfExists('members');
     }
 }

@@ -17,6 +17,10 @@ class CreateTaxAddressesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('contact_id');
             $table->unsignedInteger('location_id');
+            $table->unsignedInteger('province_id');
+            $table->unsignedInteger('country_id');
+            $table->string('city',50);
+            $table->string('localitie',50);
             $table->text('address');
             $table->integer('number')->unsigned();
             $table->integer('floor')->unsigned()->nullable();
@@ -24,9 +28,11 @@ class CreateTaxAddressesTable extends Migration
             $table->string('zip_code',8);
            
 
-
             $table->foreign('contact_id')->references('id')->on('contacts')->onDelete('cascade');
             $table->foreign('location_id')->references('id')->on('localities')->onDelete('cascade');
+            $table->foreign('province_id')->references('id')->on('provinces')->onDelete('cascade');
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
+
         });
     }
 
@@ -38,6 +44,12 @@ class CreateTaxAddressesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tax_addresses');
+        Schema::table('tax_addresses', function (Blueprint $table) {
+            $table->dropForeign('tax_addresses_contact_id_foreign');
+            $table->dropForeign('tax_addresses_location_id_foreign');
+            $table->dropForeign('tax_addresses_province_id_foreign');
+            $table->dropForeign('tax_addresses_country_id_foreign');
+          });
+         Schema::dropIfExists('tax_addresses');
     }
 }
